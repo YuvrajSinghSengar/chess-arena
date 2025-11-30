@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – AI Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card">
+        <div class="dashboard-header">
+            <div>
+                <h2>AI Chess Guide</h2>
+                <div id="aiUser" style="font-size:13px;color:#bbb;"></div>
+            </div>
+            <button class="secondary-btn" onclick="backDashboard()">Back</button>
+        </div>
+
+        <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+            Get personalized training advice based on your current rating.
+        </p>
+
+        <button class="primary-btn" onclick="generateAdvice()">Generate Training Plan</button>
+
+        <div id="advice" style="margin-top:20px;font-size:14px;line-height:1.5;"></div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+const userId = localStorage.getItem("userId");
+if (!userId) window.location.href = "auth.html";
+
+let rating = 1000;
+
+async function loadUser() {
+    const doc = await db.collection("users").doc(userId).get();
+    if (doc.exists) {
+        const u = doc.data();
+        rating = u.rating || 1000;
+        document.getElementById("aiUser").innerText =
+            ${u.fullName} (@${u.username}) • Rating: ${rating};
+    }
+}
+
+function generateAdvice() {
+    let text = "";
+    if (rating < 1100) {
+        text = `
+        • Focus on basic piece movement, checks and captures.<br>
+        • Always ask: "Is any of my piece hanging for free?"<br>
+        • Play slow games vs robot and write down your blunders.<br>
+        • Repeat the <b>Chess Basics</b> and <b>Tactics & Patterns</b> lessons in the Learn section.`;
+    } else if (rating < 1400) {
+        text = `
+        • Start every game by fighting for the centre with pawns and knights.<br>
+        • After every move, do a 3-step check: opponent checks, captures, threats.<br>
+        • Analyse lost games and find 1 critical mistake each game.<br>
+        • Practice 10 tactical puzzles per day.`;
+    } else if (rating < 1700) {
+        text = `
+        • Build a simple opening repertoire with White and Black (2–3 systems each).<br>
+        • Study rook and pawn endgames (bring king to the centre in endgames).<br>
+        • Use Play vs Robot as a training partner, but review games afterwards.<br>
+        • Avoid premoving; spend time in critical positions.`;
+    } else {
+        text = `
+        • Deepen your opening prep with model games, not only memorization.<br>
+        • Regularly review your own games and create a "mistake notebook".<br>
+        • Train calculation by setting up positions and analysing without moving pieces.<br>
+        • Mix robot games with serious games versus real people.`;
+    }
+    document.getElementById("advice").innerHTML = text;
+}
+
+function backDashboard() {
+    window.location.href = "dashboard.html";
+}
+
+loadUser();
+</script>
+</body>
+</html>
