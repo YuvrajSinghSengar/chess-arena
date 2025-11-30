@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Learn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card">
+        <div class="dashboard-header">
+            <div>
+                <h2>Learn Chess</h2>
+                <div style="font-size:13px;color:#bbb;" id="learnUser"></div>
+            </div>
+            <button class="secondary-btn" onclick="backDashboard()">Back</button>
+        </div>
+
+        <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+            Learn, track your progress, and unlock new levels of play.
+        </p>
+
+        <div class="grid-cards" id="lessonGrid"></div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+const userId = localStorage.getItem("userId");
+if (!userId) window.location.href = "auth.html";
+
+const lessons = [
+    {id:"basics", title:"Chess Basics", desc:"Board, pieces, movement and basic rules."},
+    {id:"tactics", title:"Tactics & Patterns", desc:"Pins, forks, skewers, discovered attacks."},
+    {id:"openings", title:"Openings & Principles", desc:"Control centre, develop quickly, king safety."},
+    {id:"endgames", title:"Endgames", desc:"King + pawn vs king, opposition, rook endings."}
+];
+
+let progress = {};
+
+async function loadUserAndProgress() {
+    const doc = await db.collection("users").doc(userId).get();
+    if (doc.exists) {
+        const u = doc.data();
+        document.getElementById("learnUser").innerText =
+            ${u.fullName} (@${u.username}) • Rating: ${u.rating || 1000};
+    }
+
+    const snap = await db.collection("users").doc(userId)
+        .collection("lessons").get();
+    snap.forEach(d => {
+        progress[d.id] = d.data().completed;
+    });
+
+    renderLessons();
+}
+
+function renderLessons() {
+    const grid = document.getElementById("lessonGrid");
+    grid.innerHTML = "";
+    lessons.forEach(l => {
+        const div = document.createElement("div");
+        div.className = "feature-card";
+        const done = progress[l.id];
+
+        div.innerHTML = `
+            <h3>${l.title}</h3>
+            <p>${l.desc}</p>
+            <p style="font-size:12px;margin-top:8px;">
+                Status: <span style="color:${done ? "#7CFC00" : "#ffb000"};">
+                    ${done ? "Completed" : "Not completed"}
+                </span>
+            </p>
+            <button class="secondary-btn" style="margin-top:10px;"
+                onclick="toggleLesson('${l.id}')">
+                ${done ? "Mark as not done" : "Mark as completed"}
+            </button>
+        `;
+        grid.appendChild(div);
+    });
+}
+
+async function toggleLesson(id) {
+    const done = !progress[id];
+    progress[id] = done;
+    await db.collection("users").doc(userId)
+        .collection("lessons").doc(id)
+        .set({completed: done, updatedAt: new Date()});
+    renderLessons();
+}
+
+function backDashboard() {
+    window.location.href = "dashboard.html";
+}
+
+loadUserAndProgress();
+</script>
+</body>
+</html>
