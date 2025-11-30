@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Play Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card">
+        <div class="dashboard-header">
+            <div>
+                <h2>Play Online</h2>
+                <div style="font-size:13px;color:#bbb;" id="onlineUser"></div>
+            </div>
+            <button class="secondary-btn" onclick="backDashboard()">Back</button>
+        </div>
+
+        <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+            Find opponents near your rating and start a match (you can play on the board screen and update result manually).
+        </p>
+
+        <button class="primary-btn" onclick="findOpponent()">Find Opponent</button>
+
+        <div id="matchResult" style="margin-top:20px;font-size:14px;"></div>
+
+        <h3 style="margin-top:26px;font-size:16px;">Top Online Players</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Rating</th>
+                <th>City</th>
+            </tr>
+            </thead>
+            <tbody id="onlineTable"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+const userId = localStorage.getItem("userId");
+if (!userId) window.location.href = "auth.html";
+
+let me = null;
+
+async function loadOnline() {
+    const doc = await db.collection("users").doc(userId).get();
+    me = doc.data();
+    document.getElementById("onlineUser").innerText =
+        ${me.fullName} (@${me.username}) • Rating: ${me.rating || 1000};
+
+    const snap = await db.collection("users").orderBy("rating","desc").limit(20).get();
+    const tbody = document.getElementById("onlineTable");
+    tbody.innerHTML = "";
+    let rank = 1;
+    snap.forEach(d => {
+        const u = d.data();
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${rank}</td>
+            <td>${u.fullName} (@${u.username})</td>
+            <td>${u.rating || 1000}</td>
+            <td>${(u.city || "")}</td>
+        `;
+        tbody.appendChild(tr);
+        rank++;
+    });
+}
+
+async function findOpponent() {
+    if (!me) return;
+    const myRating = me.rating || 1000;
+    const min = myRating - 200;
+    const max = myRating + 200;
+
+    let q = db.collection("users")
+        .where("rating", ">=", min)
+        .where("rating", "<=", max);
+
+    const snap = await q.get();
+    const candidates = [];
+    snap.forEach(d => {
+        if (d.id !== userId) candidates.push({id:d.id, ...d.data()});
+    });
+
+    const resultEl = document.getElementById("matchResult");
+
+    if (candidates.length === 0) {
+        resultEl.innerText = "No suitable opponent online right now. Ask a friend to create an account and try again.";
+        return;
+    }
+    const opp = candidates[Math.floor(Math.random()*candidates.length)];
+    resultEl.innerText =
+        `Matched with ${opp.fullName} (@${opp.username}) • Rating ${opp.rating || 1000}.
+You can start a match using the Play vs Robot board or any board and later update the result manually.`;
+}
+
+function backDashboard() {
+    window.location.href = "dashboard.html";
+}
+
+loadOnline();
+</script>
+</body>
+</html>
