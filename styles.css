@@ -1,0 +1,305 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #001427 0, #000814 55%);
+  color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  width: 100%;
+  max-width: 960px;
+  padding: 24px;
+}
+
+.welcome-box {
+  background: rgba(6, 13, 23, 0.96);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.brand {
+  font-size: 14px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #8899aa;
+  margin-bottom: 16px;
+}
+
+.typewriter {
+  min-height: 72px;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.typewriter span.cursor {
+  display: inline-block;
+  width: 10px;
+  background: #f5f5f5;
+  margin-left: 3px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.primary-btn {
+  margin-top: 30px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg,#ffb000,#ff4b2b);
+  color: #111;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+  background: linear-gradient(135deg,#ffc300,#ff6a3d);
+}
+
+.card {
+  background: rgba(6, 13, 23, 0.96);
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.card-title {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+/* Tabs */
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: transparent;
+  color: #eee;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg,#ffb000,#ff4b2b);
+  color: #111;
+  border-color: transparent;
+}
+
+/* Forms */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 12px 16px;
+  margin-top: 10px;
+}
+
+label {
+  font-size: 12px;
+  color: #bbb;
+  display: block;
+  margin-bottom: 4px;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #050b15;
+  color: #f5f5f5;
+  font-size: 13px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #ffb000;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.secondary-btn {
+  margin-top: 18px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid #777;
+  background: transparent;
+  color: #eee;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Dashboard */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+  font-size: 20px;
+}
+
+.chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  font-size: 12px;
+}
+
+/* Feature cards */
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  background: rgba(10,10,20,0.9);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,176,0,0.7);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.7);
+  background: rgba(20,20,40,0.95);
+}
+
+.feature-card h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* Filters + Tables */
+
+.filter-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+th {
+  text-align: left;
+  color: #bbb;
+  background: rgba(255,255,255,0.03);
+}
+
+/* Chess.com style board */
+
+.chess-board {
+  width: 480px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border: 6px solid #111;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 12px;
+  box-shadow: 0px 0px 25px rgba(0,0,0,0.7);
+}
+
+.square {
+  width: 100%;
+  height: 100%;
+  font-size: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  transition: 0.08s;
+}
+
+.light {
+  background: #eeeed2; /* chess.com light */
+}
+
+.dark {
+  background: #769656; /* chess.com dark */
+}
+
+.square:hover {
+  outline: 3px solid #f1c40f;
+}
+
+.selected {
+  outline: 4px solid #00c2ff !important;
+}
+
+.piece {
+  filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.5));
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 16px;
+  }
+  .card, .welcome-box {
+    padding: 20px;
+  }
+  .chess-board {
+    width: 320px;
+  }
+  .square {
+    font-size: 28px;
+  }
+}

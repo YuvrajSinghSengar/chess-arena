@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Arena – Play with Friends</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Play with Friends</h2>
+        <div id="friendsUser" style="font-size:13px;color:#bbb;"></div>
+      </div>
+      <button class="secondary-btn" onclick="backDashboard()">Back</button>
+    </div>
+
+    <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+      Host or join a friend match using a unique code. Friendly games do not change rating,
+      challenge games update rating for both players based on result.
+      Result entry is manual (mini-project level), but the room + code system is real.
+    </p>
+
+    <h3 style="font-size:16px;margin-bottom:8px;">Host a Game</h3>
+    <div class="form-grid">
+      <div>
+        <label>Mode</label>
+        <select id="hostMode">
+          <option value="friendly">Friendly (no rating)</option>
+          <option value="rated">Challenge (rated)</option>
+        </select>
+      </div>
+    </div>
+    <button class="primary-btn" style="margin-top:10px;" onclick="hostGame()">Host (get code)</button>
+    <div id="hostInfo" style="margin-top:10px;font-size:13px;"></div>
+
+    <h3 style="font-size:16px;margin-top:24px;margin-bottom:8px;">Join a Game</h3>
+    <div class="form-grid">
+      <div>
+        <label>Enter Code</label>
+        <input id="joinCode" placeholder="6-digit code">
+      </div>
+    </div>
+    <button class="primary-btn" style="margin-top:10px;" onclick="joinGame()">Join</button>
+    <div id="joinInfo" style="margin-top:10px;font-size:13px;"></div>
+
+    <h3 style="font-size:16px;margin-top:24px;margin-bottom:8px;">Your Active Friend Rooms</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Code</th>
+        <th>Mode</th>
+        <th>Role</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody id="roomsBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="friends.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Arena – Host Tournament Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Host Tournament Game</h2>
+        <div id="tournamentUser" style="font-size:13px;color:#bbb;"></div>
+      </div>
+      <button class="secondary-btn" onclick="backDashboard()">Back</button>
+    </div>
+
+    <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+      Use this as organiser. Generate a code and share it with two players.
+      They will register themselves to this match using the code.
+      You can see both players, watch their game on any board, and record the result.
+      Tournament games do not change rating.
+    </p>
+
+    <button class="primary-btn" onclick="hostTournament()">Generate Match Code</button>
+    <div id="tCode" style="margin-top:10px;font-size:13px;"></div>
+
+    <h3 style="font-size:16px;margin-top:24px;">Players in this Match</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>Role</th>
+        <th>Player</th>
+        <th>Rating</th>
+      </tr>
+      </thead>
+      <tbody id="tPlayers"></tbody>
+    </table>
+
+    <h3 style="font-size:16px;margin-top:24px;">Player Self-Join</h3>
+    <p style="font-size:13px;color:#bbb;">
+      Players can also open this page, enter the code and register themselves.
+    </p>
+    <div class="form-grid">
+      <div>
+        <label>Enter Code</label>
+        <input id="tJoinCode" placeholder="Match code">
+      </div>
+      <div>
+        <label>Side</label>
+        <select id="tSide">
+          <option value="white">White</option>
+          <option value="black">Black</option>
+        </select>
+      </div>
+    </div>
+    <button class="primary-btn" style="margin-top:10px;" onclick="joinTournament()">Join Match</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="tournament.js"></script>
+</body>
+</html>

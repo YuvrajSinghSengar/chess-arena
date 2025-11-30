@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Arena – Play vs Robot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Play vs Robot</h2>
+        <div id="robotUser" style="font-size:13px;color:#bbb;"></div>
+      </div>
+      <button class="secondary-btn" onclick="backDashboard()">Back</button>
+    </div>
+
+    <div id="board" class="chess-board"></div>
+
+    <div style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="primary-btn" onclick="newGame()">New Game</button>
+      <button class="secondary-btn" onclick="quitGame()">Quit Game (-15)</button>
+    </div>
+
+    <p id="status" style="font-size:13px;margin-top:12px;color:#bbb;text-align:center;">
+      You play White, robot plays Black. Official piece movement rules (no castling / promotion). Rating changes only when a game finishes.
+    </p>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="chess.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Arena – AI Chess Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="card">
+    <div class="dashboard-header">
+      <div>
+        <h2>AI Chess Guide</h2>
+        <div id="aiUser" style="font-size:13px;color:#bbb;"></div>
+      </div>
+      <button class="secondary-btn" onclick="backDashboard()">Back</button>
+    </div>
+
+    <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+      Generate a training plan based on your rating and practice from sample positions.
+    </p>
+
+    <button class="primary-btn" onclick="generateAdvice()">Generate Training Plan</button>
+    <div id="advice" style="margin-top:20px;font-size:14px;line-height:1.5;"></div>
+
+    <h3 style="font-size:16px;margin-top:24px;">Practice Position</h3>
+    <p style="font-size:13px;color:#bbb;">
+      Click "New Position" to load a sample board. Click "Show Hint" to see the suggested move.
+    </p>
+
+    <div id="aiBoard" class="chess-board"></div>
+    <div style="margin-top:12px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button class="secondary-btn" onclick="newPosition()">New Position</button>
+      <button class="secondary-btn" onclick="showHint()">Show Hint</button>
+    </div>
+    <p id="hintText" style="font-size:13px;margin-top:10px;color:#bbb;text-align:center;"></p>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="ai-guide.js"></script>
+</body>
+</html>

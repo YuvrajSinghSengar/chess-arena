@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Arena – Play Online</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Play Online</h2>
+        <div id="onlineUser" style="font-size:13px;color:#bbb;"></div>
+      </div>
+      <button class="secondary-btn" onclick="backDashboard()">Back</button>
+    </div>
+
+    <p style="font-size:13px;color:#bbb;margin-bottom:16px;">
+      This is a simple pairing system. It finds a random opponent near your rating.
+      You can then play on any board (for example Play vs Robot board) and later update the result manually.
+    </p>
+
+    <button class="primary-btn" onclick="findOpponent()">Find Opponent</button>
+    <div id="matchResult" style="margin-top:20px;font-size:14px;"></div>
+
+    <h3 style="margin-top:26px;font-size:16px;">Top Players</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Player</th>
+        <th>Rating</th>
+        <th>City</th>
+      </tr>
+      </thead>
+      <tbody id="onlineTable"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="online.js"></script>
+</body>
+</html>

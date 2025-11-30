@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess Arena – Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Chess Arena</h2>
+        <div id="welcomeUser" style="font-size:13px;color:#bbb;"></div>
+      </div>
+      <div>
+        <span class="chip" id="ratingChip">Rating: ...</span>
+        <button class="secondary-btn" style="margin-left:10px;" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="grid-cards">
+      <div class="feature-card" onclick="openLearn()">
+        <h3>Learn</h3>
+        <p>Interactive lessons and notes to understand chess from basics to endgames.</p>
+      </div>
+      <div class="feature-card" onclick="openOnlinePlay()">
+        <h3>Play Online</h3>
+        <p>Find random opponents around your rating and track results.</p>
+      </div>
+      <div class="feature-card" onclick="openFriends()">
+        <h3>Play with Friends</h3>
+        <p>Host or join a match using a code, do friendly or rated challenges.</p>
+      </div>
+      <div class="feature-card" onclick="openAIGuide()">
+        <h3>AI Chess Guide</h3>
+        <p>Training plan and practice positions recommended for your rating.</p>
+      </div>
+      <div class="feature-card" onclick="openRobot()">
+        <h3>Play vs Robot</h3>
+        <p>Official-rule chess vs a basic robot. Rating changes only by result.</p>
+      </div>
+      <div class="feature-card" onclick="openRankings()">
+        <h3>Check Rankings</h3>
+        <p>See where you stand in your country, state, city and institute.</p>
+      </div>
+      <div class="feature-card" onclick="openInvite()">
+        <h3>Host Tournament</h3>
+        <p>Host a match as organiser using a code, players play while you spectate.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
