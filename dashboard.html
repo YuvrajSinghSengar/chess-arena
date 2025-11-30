@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card">
+        <div class="dashboard-header">
+            <div>
+                <h2>Chess Arena</h2>
+                <div id="welcomeUser" style="font-size:13px;color:#bbb;"></div>
+            </div>
+            <div>
+                <span class="chip" id="ratingChip">Rating: ...</span>
+                <button class="secondary-btn" style="margin-left:10px;" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="grid-cards">
+            <div class="feature-card" onclick="openLearn()">
+                <h3>Learn</h3>
+                <p>Study openings, tactics and strategy with guided material.</p>
+            </div>
+
+            <div class="feature-card" onclick="openOnlinePlay()">
+                <h3>Play Online</h3>
+                <p>Find opponents based on your rating, city, or institute.</p>
+            </div>
+
+            <div class="feature-card" onclick="openFriends()">
+                <h3>Play with Friends</h3>
+                <p>Invite specific players, chat and battle for bragging rights.</p>
+            </div>
+
+            <div class="feature-card" onclick="openAIGuide()">
+                <h3>AI Chess Guide</h3>
+                <p>Get suggestions, see blunders and learn better moves.</p>
+            </div>
+
+            <div class="feature-card" onclick="openRobot()">
+                <h3>Play vs Robot</h3>
+                <p>Start from 1000 rating and climb by beating the bot.</p>
+            </div>
+
+            <div class="feature-card" onclick="openRankings()">
+                <h3>Check Rankings</h3>
+                <p>See your position in country, state, city and your institute.</p>
+            </div>
+
+            <div class="feature-card" onclick="openInvite()">
+                <h3>Invite Match</h3>
+                <p>Send match requests to any player and chat once they accept.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

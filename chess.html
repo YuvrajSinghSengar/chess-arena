@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Play vs Robot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card chess-layout">
+        <div class="dashboard-header">
+            <div>
+                <h2>Play vs Robot</h2>
+                <div id="chessUser" style="font-size:13px;color:#bbb;"></div>
+            </div>
+            <button class="secondary-btn" onclick="backDashboard()">Back</button>
+        </div>
+
+        <div id="board"></div>
+
+        <div class="chess-controls">
+            <button onclick="resetGame()">Reset Board</button>
+        </div>
+
+        <div style="font-size:13px;color:#bbb;text-align:center;">
+            Simplified demo: you play White, a basic robot plays Black. Capture the enemy king to win.
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="chess.js"></script>
+</body>
+</html>

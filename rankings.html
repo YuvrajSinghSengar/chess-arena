@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Rankings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card">
+        <div class="dashboard-header">
+            <div>
+                <h2>Rankings</h2>
+                <div style="font-size:13px;color:#bbb;">
+                    View rankings by country, state, city or institute.
+                </div>
+            </div>
+            <button class="secondary-btn" onclick="backDashboard()">Back</button>
+        </div>
+
+        <div class="filter-row">
+            <select id="scopeSelect">
+                <option value="global">Global</option>
+                <option value="country">Country</option>
+                <option value="state">State</option>
+                <option value="city">City</option>
+                <option value="institute">Institute</option>
+            </select>
+            <input id="scopeValue" placeholder="Filter value (e.g. India, UP, Kanpur, PSIT)">
+            <button class="primary-btn" style="padding:8px 18px;font-size:13px;" onclick="loadRankings()">Apply</button>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Location</th>
+                <th>Institute</th>
+                <th>Rating</th>
+            </tr>
+            </thead>
+            <tbody id="rankingBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="rankings.js"></script>
+</body>
+</html>
