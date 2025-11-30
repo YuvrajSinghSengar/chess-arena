@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="welcome-box">
+        <div class="brand">CHESS ARENA</div>
+        <div class="typewriter">
+            <span id="type-text"></span><span class="cursor"></span>
+        </div>
+        <button class="primary-btn" onclick="getStarted()">Get Started</button>
+    </div>
+</div>
+
+<script>
+const lines = [
+    "Welcome to a new world of Chess,",
+    "the ultimate arena to play, learn,",
+    "and top your community."
+];
+
+let lineIndex = 0;
+let charIndex = 0;
+const speed = 40;
+const textEl = document.getElementById("type-text");
+
+function typeLine() {
+    if (lineIndex >= lines.length) return;
+    const current = lines[lineIndex];
+
+    if (charIndex < current.length) {
+        textEl.innerHTML = textEl.innerHTML.replace(/<br>$/,'') + current[charIndex];
+        charIndex++;
+        setTimeout(typeLine, speed);
+    } else {
+        textEl.innerHTML += "<br>";
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(typeLine, 400);
+    }
+}
+typeLine();
+
+function getStarted() {
+    window.location.href = "auth.html";
+}
+</script>
+</body>
+</html>

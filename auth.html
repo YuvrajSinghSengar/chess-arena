@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chess Arena – Login / Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="main-container">
+    <div class="card">
+        <div class="card-title">Welcome to Chess Arena</div>
+        <div class="tabs">
+            <button id="loginTab" class="tab-btn active" onclick="showLogin()">Log In</button>
+            <button id="signupTab" class="tab-btn" onclick="showSignup()">Sign Up</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+            <div class="form-grid">
+                <div class="full-width">
+                    <label>Username</label>
+                    <input id="loginUsername" placeholder="Enter your username">
+                </div>
+                <div class="full-width">
+                    <label>Password</label>
+                    <input id="loginPassword" placeholder="Password" type="password">
+                </div>
+            </div>
+            <button class="primary-btn" onclick="login()">Log In</button>
+        </div>
+
+        <!-- SIGNUP FORM -->
+        <div id="signupForm" style="display:none;">
+            <div class="form-grid">
+                <div>
+                    <label>Full Name</label>
+                    <input id="fullName" placeholder="Your full name">
+                </div>
+                <div>
+                    <label>Username (must be unique)</label>
+                    <input id="username" placeholder="Choose a unique username">
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input id="password" type="password" placeholder="Create password">
+                </div>
+                <div>
+                    <label>Phone Number</label>
+                    <input id="phone" placeholder="Phone number">
+                </div>
+                <div>
+                    <label>Region</label>
+                    <input id="region" placeholder="Region">
+                </div>
+                <div>
+                    <label>Country</label>
+                    <input id="country" placeholder="Country">
+                </div>
+                <div>
+                    <label>State</label>
+                    <input id="state" placeholder="State">
+                </div>
+                <div>
+                    <label>City</label>
+                    <input id="city" placeholder="City">
+                </div>
+                <div class="full-width">
+                    <label>Area / Locality</label>
+                    <input id="area" placeholder="Area / locality">
+                </div>
+                <div>
+                    <label>Education Type</label>
+                    <select id="eduType">
+                        <option value="">Select</option>
+                        <option value="school">School</option>
+                        <option value="college">College</option>
+                        <option value="university">University</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Institute Name</label>
+                    <input id="institute" placeholder="School / College / University name">
+                </div>
+                <div>
+                    <label>Institute Ranking (optional)</label>
+                    <input id="instituteRank" placeholder="Ranking or position">
+                </div>
+            </div>
+            <button class="primary-btn" onclick="signup()">Create Account</button>
+        </div>
+
+        <button class="secondary-btn" onclick="backHome()">Back to Welcome</button>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>
