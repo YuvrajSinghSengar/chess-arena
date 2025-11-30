@@ -5,6 +5,8 @@ if (!currentUserId) {
     window.location.href = "auth.html";
 }
 
+let currentUserData = null;
+
 async function loadUser() {
     const doc = await db.collection("users").doc(currentUserId).get();
     if (!doc.exists) {
@@ -14,10 +16,11 @@ async function loadUser() {
         return;
     }
     const data = doc.data();
+    currentUserData = data;
     document.getElementById("welcomeUser").innerText =
-        `Welcome, ${data.fullName} (@${data.username})`;
+        Welcome, ${data.fullName} (@${data.username});
     document.getElementById("ratingChip").innerText =
-        `Rating: ${data.rating || 1000}`;
+        Rating: ${data.rating || 1000};
 }
 loadUser();
 
@@ -26,20 +29,22 @@ function logout() {
     window.location.href = "index.html";
 }
 
+// NOW each feature opens a real page
+
 function openLearn() {
-    alert("Learn module: You can implement lessons, puzzles, and videos here for your mini project.");
+    window.location.href = "learn.html";
 }
 
 function openOnlinePlay() {
-    alert("Online play matchmaking (real-time) can be added later using WebSockets or Firebase Realtime DB.");
+    window.location.href = "online.html";
 }
 
 function openFriends() {
-    alert("Friends + chat system can be added as an advanced feature, not required for basic demo.");
+    window.location.href = "friends.html";
 }
 
 function openAIGuide() {
-    alert("AI guide: You can later integrate a chess engine to show best moves and blunders.");
+    window.location.href = "ai-guide.html";
 }
 
 function openRobot() {
@@ -51,5 +56,5 @@ function openRankings() {
 }
 
 function openInvite() {
-    alert("Invite match + chat can be implemented as future enhancement.");
+    window.location.href = "invite.html";
 }
